@@ -109,6 +109,10 @@
   background-repeat: no-repeat;
 }
 
+canvas {
+  height: 400px !important;
+}
+
 .main-section {
   background: 
   linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.85)),
@@ -251,4 +255,17 @@
 @keyframes bobbing {
   0% { transform: translateY(0); }
   100% { transform: translateY(-10px); }
+}
+
+.bg-dark-gray {
+  background-color: #2C2C2C;
+}
+
+@keyframes moveUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
