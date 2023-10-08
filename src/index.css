@@ -269,3 +269,19 @@ canvas {
     transform: translateY(-10px);
   }
 }
+
+.wordWrap {
+  word-wrap: break-word;
+}
+
+.recommendation {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+}
+
+.point {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
