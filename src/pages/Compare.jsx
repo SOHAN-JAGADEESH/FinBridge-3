@@ -19,7 +19,7 @@ const Compare = () => {
 
   // If hourlyWage is provided, calculate the monthly salary, otherwise use the default
   const melbourneMonthlySalary = confirmedHourlyWage 
-  ? confirmedHourlyWage * 24 * 4 
+  ? confirmedHourlyWage * 24 * 4.3 
   : 4000; // default value
 
   const handleHourlyWageSubmit = () => {
@@ -105,21 +105,29 @@ const Compare = () => {
                                 Enter your hourly wage (AUD):
                             </label>
                             <div className="flex">
-                              <input 
-                                  type="number" 
-                                  id="hourlyWage" 
-                                  name="hourlyWage" 
-                                  onChange={e => {
-                                    setHourlyWage(parseFloat(e.target.value));
-                                    if (parseFloat(e.target.value) < 23) {
-                                        setWageError(true);
-                                    } else {
-                                        setWageError(false);
-                                    }
-                                }}
-                                  placeholder="e.g. 20"
-                                  className="mt-1 p-2 border rounded-md flex-grow"
-                              />
+                                <input 
+                                    type="number" 
+                                    id="hourlyWage" 
+                                    name="hourlyWage" 
+                                    onChange={e => {
+                                        const inputValue = parseFloat(e.target.value);
+                                        
+                                        
+                                        if (isNaN(inputValue) || inputValue <= 0) {
+                                            setWageError("Please enter a valid wage");
+                                            setHourlyWage("")
+                                        } else if (inputValue < 23) {
+                                            setWageError("Hourly wage should be at least 23 AUD.");
+                                        } else if (inputValue > 200) {
+                                            setWageError("Please enter a wage less than or equal to 200 AUD.");
+                                        } else {
+                                            setWageError(null);
+                                            setHourlyWage(inputValue);
+                                        }
+                                    }}
+                                    placeholder="e.g. 20"
+                                    className="mt-1 p-2 border rounded-md flex-grow"
+                                />
                               <button 
                                   onClick={handleHourlyWageSubmit}
                                   className="ml-2 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600"
@@ -127,8 +135,9 @@ const Compare = () => {
                                   Submit
                               </button>
                             </div>
-                            {/* <p className="text-red-500 text-xs mt-1" role="alert">Hourly wage should be at least 23 AUD.</p> */}
+                            {wageError && <p className="text-red-500 mt-2">{wageError}</p>}
                         </div>
+                        
                         <div className="grid grid-cols-4 gap-4 mb-4 font-bold">
                         <div>Category</div>
                         <div>Cost</div>

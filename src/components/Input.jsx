@@ -28,11 +28,12 @@ const Input = ({ setAmount }) => {
      */
     const handleInputChange = (e) => {
         const value = e.target.value;
+        
         if (value === "") {
-            setError(null);
+            setError("Please enter a valid value");
             setInputValue("");
-        } else if (value < 0) {
-            setError("Please enter a value greater than or equal to 0");
+        } else if (value <= 0) {
+            setError("Please enter a value greater than 0");
         } else if (value > 100000) {
             setError("Please enter a value less than or equal to $100,000");
         } else {
