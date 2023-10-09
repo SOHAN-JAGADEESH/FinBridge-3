@@ -10,7 +10,7 @@ const Budget = ({ location }) => {
 
   const expenditures = location?.state?.expenditures || {};
 
-  const API_ENDPOINT = 'http://localhost:3000/poem';
+  const API_ENDPOINT = 'https://backend-btlp.onrender.com/poem';
 
   const [budgetRecommendation, setBudgetRecommendation] = useState('');
 
@@ -80,6 +80,9 @@ const sendDataToAPI = async () => {
         const chunk = decoder.decode(value);
         accumulatedData += chunk;
   
+        // Update the state with the accumulated data
+        setBudgetRecommendation(accumulatedData);
+  
         // Continue reading the next chunk
         return reader.read().then(processText);
       });
@@ -89,20 +92,7 @@ const sendDataToAPI = async () => {
     }
   };
 
-  function formatRecommendation(recommendation) {
-    // Split the recommendation into points based on numbers (e.g., "1.", "2.", etc.)
-    const points = recommendation.split(/\d+\./).filter(Boolean);
   
-    return (
-      <div>
-        {points.map((point, index) => (
-          <p key={index} className="point">
-            {point.trim()}
-          </p>
-        ))}
-      </div>
-    );
-  }
   
   
 
@@ -161,7 +151,7 @@ const sendDataToAPI = async () => {
                 Your Custom Budget Recommendation
             </h2>
             <p className={`${styles.paragraph} mt-5 text-white wordWrap`}>
-                {formatRecommendation(budgetRecommendation)}
+              <pre>{budgetRecommendation}</pre>
             </p>
           </div>
         
