@@ -114,7 +114,7 @@ const handleSubmit = () => {
                 <UserJourneyCard 
                   header="Unlock AI-Powered Financial Planning"
                   paragraph="You've taken the first step with your expenditure analysis. Now, elevate your financial strategy with our AI-driven custom budgeting tool. Set clear financial goals and let our advanced algorithms guide you towards achieving them. Remember, this tailored experience builds upon your analysis, ensuring precision and relevance. Don't miss out on this opportunity to master your finances!"
-                  navigateTo="/survey"
+                  navigateTo="/budget"
                 />
               </div>
             )}

@@ -108,10 +108,7 @@ export const json = {
            "4",
            "5",
            "6",
-           {
-            "value": "Item 8",
-            "text": "7"
-           }
+           "7",
           ]
          },
          {
