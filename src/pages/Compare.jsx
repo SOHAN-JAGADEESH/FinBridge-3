@@ -3,6 +3,7 @@ import {Navbar, Footer} from "../components";
 import styles from "../style";
 import { useState, useEffect } from "react";
 import "../index.css";
+import UserJourneyCard from './UserJourneyCard';
 
 const Compare = () => {
   const [showHowToGuide, setShowHowToGuide] = useState(false);
@@ -28,7 +29,7 @@ const Compare = () => {
   };
 
 
-  // Hardcoded data for Melbourne and India
+  //  data for Melbourne and India
   const melbourneData = {
       averageMonthlySalary: melbourneMonthlySalary,
       rent: 1200,
@@ -212,7 +213,13 @@ const Compare = () => {
                     </div>
                     <br/>
                     <br/>
+                    
                   </div>
+                  <UserJourneyCard 
+                        header="Next Steps in Your Journey"
+                        paragraph="After grasping the comparative costs between Melbourne and India, we recommend exploring our Information Timeline. It's designed to provide international students with detailed insights, ensuring a smooth and informed transition to life in Australia."
+                        navigateTo="/information"
+                    />
                   <br/>
               </div>
           </div>

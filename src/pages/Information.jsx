@@ -3,7 +3,7 @@ import {Navbar,Footer} from "../components";
 import styles from "../style";
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css'; // Importing the styles
-
+import UserJourneyCard from './UserJourneyCard';
 import { FaMoneyBillWave, FaPhoneAlt, FaUniversity } from 'react-icons/fa'; // Importing icons
 import "../index.css";
 
@@ -215,11 +215,16 @@ const Information = () => {
               </VerticalTimelineElement>
             ))}
           </VerticalTimeline>
+          <br />
+          <br />
+          <br />
+          <UserJourneyCard 
+              header="Tailor Your Expenditure Estimates"
+              paragraph="Now that you've navigated the Information Timeline, it's time to delve deeper. Estimate your expenditure based on your unique lifestyle choices in Australia. Get a clearer picture of your finances and make informed decisions for a comfortable student life."
+              navigateTo="/survey"
+          />
         </div>
       </div>
-      <br />
-      <br />
-      <br />
       <br />
       <Footer />
     </div>
