@@ -132,25 +132,30 @@ const ExpenditureGraph = ({ expenditures }) => {
             <canvas ref={averageChartRef}></canvas>
         </div>
       </div>
-      {overspendingCategories.length > 0 && (
-      <div>
-        <p className={`${styles.heading4} mt-5`}>You are overspending in the following categories: {overspendingCategories.join(', ')}. Here are some tips to optimize your spending:</p>
-        <div className="mt-5 grid gap-4">
-          {overspendingCategories.map(category => (
-            <div key={category} className="bg-dark-gray rounded-[4px] p-5 pl-18 pr-8">
-              <h4 className="text-[#1CE8A8] mb-4">{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
-              <ul className="list-disc list-inside">
-                {tips[category].map((tip, index) => (
-                  <li key={index} className={`${styles.paragraph} mt-2`}>{tip}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+      {overspendingCategories.length > 0 ? (
+        <div>
+          <p className={`${styles.heading4} mt-5`}>You are overspending in the following categories: {overspendingCategories.join(', ')}. <br/> Here are some tips to optimize your spending:</p>
+          <div className="mt-5 grid gap-4">
+            {overspendingCategories.map(category => (
+              <div key={category} className="bg-dark-gray rounded-[4px] p-5 pl-18 pr-8">
+                <h4 className="text-[#1CE8A8] mb-4">{category.charAt(0).toUpperCase() + category.slice(1)}</h4>
+                <ul className="list-disc list-inside">
+                  {tips[category].map((tip, index) => (
+                    <li key={index} className={`${styles.paragraph} mt-2`}>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    )}
-  </div>
-);
+      ) : (
+        <div className="mt-5">
+          <p className={`${styles.heading4}`}>Your expenditure is optimal!</p>
+          <p className={`${styles.paragraph} mt-2`}>However, you can still use our AI budget tool to get a custom budget. Click the link below.</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default ExpenditureGraph;

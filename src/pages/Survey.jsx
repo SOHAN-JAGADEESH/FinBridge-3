@@ -8,7 +8,7 @@ import { themeJson } from "./theme";
 import {Navbar, Footer} from "../components";
 import styles from "../style";
 import ResultsComponent from "../components/ResultsComponent"; 
-import AnimatedHeader from '../components/AnimatedHeader'; // Import the AnimatedHeader component
+import UserJourneyCard from "./UserJourneyCard";
 
 function SurveyComponent() {
     const [surveyData, setSurveyData] = useState(null);
@@ -102,8 +102,12 @@ function SurveyComponent() {
                         <br/>
                         <br/>
                         <br/>
-                        
                     </div>
+                    <UserJourneyCard 
+                            header="Analyze and Optimize Your Expenditure"
+                            paragraph="After estimating your expenditure, take the next step by inputting your actual expenses. We'll provide an in-depth analysis and offer tailored tips to help you make the most of your student budget in Australia. Empower your financial journey with insights and recommendations."
+                            navigateTo="/analyze"
+                        />
                 </div>
             </div>
             <br/>

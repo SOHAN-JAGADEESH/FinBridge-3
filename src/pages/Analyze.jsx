@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Navbar, Footer} from "../components";
 import styles from "../style";
 import ExpenditureGraph from './ExpenditureGraph';
-import { Link } from 'react-router-dom';
+import UserJourneyCard from './UserJourneyCard';
 
 const Analyze = () => {
   const [expenditures, setExpenditures] = useState({
@@ -15,20 +15,39 @@ const Analyze = () => {
   });
 
   const [showGraph, setShowGraph] = useState(false);
+  const [errors, setErrors] = useState({});  // New state for errors
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    let currentErrors = { ...errors }; // Copy the current errors
+
+    if (value < 0 || value > 10000) {
+        currentErrors[name] = "  Please enter a valid value";
+    } else {
+        currentErrors[name] = ""; // Clear the error for the current input
+    }
+
+    setErrors(currentErrors); // Update the errors state
     setExpenditures(prevState => ({
-      ...prevState,
-      [name]: value
+        ...prevState,
+        [name]: value
     }));
-  }
+}
 
   
+  
 
-  const handleSubmit = () => {
-    setShowGraph(true);  // Set the state to true to display the graph
+const handleSubmit = () => {
+  // Check if there are any errors
+  const hasErrors = Object.values(errors).some(error => error);
+
+  if (!hasErrors) {
+      setShowGraph(true);  // Set the state to true to display the graph
+  } else {
+      // Optionally, you can show a general error message or alert to the user
+      alert("Please correct the errors before submitting.");
   }
+}
 
   return (
     <div className="bg-primary w-full overflow-hidden min-h-screen relative ">
@@ -58,6 +77,7 @@ const Analyze = () => {
                       onChange={handleInputChange} 
                       className="border p-2 bg-gray-200"
                     />
+                    {errors[category] && <p className="text-red-500">{errors[category]}</p>}
                   </div>
                 ))}
               </div>
@@ -73,7 +93,9 @@ const Analyze = () => {
                       onChange={handleInputChange} 
                       className="border p-2 bg-gray-200"
                     />
+                    {errors[category] && <p className="text-red-500">{ errors[ category]}</p>}
                   </div>
+                  
                 ))}
               </div>
             </div>
@@ -84,28 +106,19 @@ const Analyze = () => {
             </div>
             <br/>
             {showGraph && <ExpenditureGraph expenditures={expenditures} />}  {/* Conditionally render the graph */}
-            </div>
+            
         
 
             {showGraph && (  
-              <div className="mt-10 p-5 rounded-[4px] bg-dark-gray animate-moveUpDown duration-1000 ease-in-out">
-                <div className="text-center">
-                  <p className={`${styles.paragraph} mt-5 text-white`}>
-                    Based on your expenditure analysis, we can assist you in setting a budget and achieving your financial goals using advanced AI techniques.
-                  </p>
-                  <br/>
-                  <Link 
-                      to={{ 
-                          pathname: '/budget', 
-                          state: { expenditures: expenditures } 
-                      }} 
-                      className={`mt-5 py-2 px-6 font-poppins font-medium text-[#1CE8A8] bg-black border border-[#1CE8A8] rounded-[3px] outline-none hover:bg-[#1CE8A8] hover:text-black`}
-                  >
-                      Let's Get Started
-                  </Link>
-                </div>
+              <div >
+                <UserJourneyCard 
+                  header="Unlock AI-Powered Financial Planning"
+                  paragraph="You've taken the first step with your expenditure analysis. Now, elevate your financial strategy with our AI-driven custom budgeting tool. Set clear financial goals and let our advanced algorithms guide you towards achieving them. Remember, this tailored experience builds upon your analysis, ensuring precision and relevance. Don't miss out on this opportunity to master your finances!"
+                  navigateTo="/survey"
+                />
               </div>
             )}
+            </div>
         </div>
       </div>
       <br/>
