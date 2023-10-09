@@ -270,7 +270,8 @@ canvas {
   }
 }
 
-.wordWrap {
+.preWrap {
+  white-space: pre-wrap;
   word-wrap: break-word;
 }
 

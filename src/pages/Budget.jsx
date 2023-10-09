@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Navbar from "../components/Navbar";
+import {Navbar, Footer} from "../components";
 import styles from "../style";
 import { useLocation } from 'react-router-dom';
+import "../index.css";
 
 const Budget = () => {
   const [choice, setChoice] = useState(null);
@@ -23,13 +24,13 @@ const Budget = () => {
 
 const sendDataToAPI = async () => {
   let promptText = `Given the user's expenditures of:
-      Housing: 1200,
-      Food: 400,
-      Transportation: 300,
-      Utilities: 300,
-      Leisure: 300,
-      Miscellaneous: 300,`;
-  
+    Housing: ${receivedExpenditures.housing || 0},
+    Food: ${receivedExpenditures.food || 0},
+    Transportation: ${receivedExpenditures.transportation || 0},
+    Utilities: ${receivedExpenditures.utilities || 0},
+    Leisure: ${receivedExpenditures.leisure || 0},
+    Miscellaneous: ${receivedExpenditures.miscellaneous || 0},`;
+
     switch (choice) {
       case 'saveMoney':
         promptText += `
@@ -60,7 +61,7 @@ const sendDataToAPI = async () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ prompt: "write me a small poem" })
+        body: JSON.stringify({ prompt: promptText })
       });
   
       if (!response.ok) {
@@ -152,19 +153,14 @@ const sendDataToAPI = async () => {
             <h2 className={styles.heading2}>
                 Your Custom Budget Recommendation
             </h2>
-            <div className="mt-8 ">
-              <h2 className={styles.heading2}>
-                  Received Expenditures
-              </h2>
-              
+            <div className={`${styles.paragraph} mt-5 text-white wordWrap`} style={{ maxWidth: '100%', overflow: 'hidden' }}>
+                <pre className="preWrap">{budgetRecommendation}</pre>
             </div>
-            <p className={`${styles.paragraph} mt-5 text-white wordWrap`}>
-              <pre>{budgetRecommendation}</pre>
-            </p>
-          </div>
-        
+        </div>
         </div>
       </div>
+      <br/> <br/> <br/> <br/>
+      <Footer/>
     </div>
   );
 }
