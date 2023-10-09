@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import Navbar from "../components/Navbar";
 import styles from "../style";
+import { useLocation } from 'react-router-dom';
 
-const Budget = ({ location }) => {
+const Budget = () => {
   const [choice, setChoice] = useState(null);
   const [income, setIncome] = useState('');
   const [savings, setSavings] = useState('');
   const [months, setMonths] = useState('');
 
-  const expenditures = location?.state?.expenditures || {};
+  
 
   const API_ENDPOINT = 'https://backend-btlp.onrender.com/poem';
 
   const [budgetRecommendation, setBudgetRecommendation] = useState('');
 
- 
+  const location = useLocation();
+  const receivedExpenditures = location.state?.expenditures;
+  console.log("Received Expenditures:", receivedExpenditures);
   
 
 
@@ -97,7 +100,6 @@ const sendDataToAPI = async () => {
   
 
   
-
   return (
     <div className="bg-primary w-full overflow-hidden min-h-screen relative ">
       <div className={`${styles.paddingX} ${styles.flexCenter} main-section `}>
@@ -150,6 +152,12 @@ const sendDataToAPI = async () => {
             <h2 className={styles.heading2}>
                 Your Custom Budget Recommendation
             </h2>
+            <div className="mt-8 ">
+              <h2 className={styles.heading2}>
+                  Received Expenditures
+              </h2>
+              
+            </div>
             <p className={`${styles.paragraph} mt-5 text-white wordWrap`}>
               <pre>{budgetRecommendation}</pre>
             </p>

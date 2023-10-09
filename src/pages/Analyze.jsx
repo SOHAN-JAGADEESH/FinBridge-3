@@ -3,6 +3,7 @@ import {Navbar, Footer} from "../components";
 import styles from "../style";
 import ExpenditureGraph from './ExpenditureGraph';
 import UserJourneyCard from './UserJourneyCard';
+import { useNavigate } from 'react-router-dom';
 
 const Analyze = () => {
   const [expenditures, setExpenditures] = useState({
@@ -13,6 +14,12 @@ const Analyze = () => {
     leisure: '',
     miscellaneous: ''
   });
+
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+      navigate('/budget', { state: { expenditures: expenditures } });
+  };
 
   const [showGraph, setShowGraph] = useState(false);
   const [errors, setErrors] = useState({});  // New state for errors
@@ -64,6 +71,9 @@ const handleSubmit = () => {
           </div>
           <br/>
           <div className="border-2 border-[#1CE8A8] p-8">
+          <h2 className={`${styles.heading4} text-center`}>
+                Please enter your expenditure for these categories in AUD
+            </h2>
             <div className="input-section mt-8 flex justify-center">
               <div className="flex flex-col mr-4">
                 {['housing', 'food', 'transportation'].map(category => (
@@ -107,17 +117,29 @@ const handleSubmit = () => {
             <br/>
             {showGraph && <ExpenditureGraph expenditures={expenditures} />}  {/* Conditionally render the graph */}
             
-        
+            
 
             {showGraph && (  
-              <div >
-                <UserJourneyCard 
-                  header="Unlock AI-Powered Financial Planning"
-                  paragraph="You've taken the first step with your expenditure analysis. Now, elevate your financial strategy with our AI-driven custom budgeting tool. Set clear financial goals and let our advanced algorithms guide you towards achieving them. Remember, this tailored experience builds upon your analysis, ensuring precision and relevance. Don't miss out on this opportunity to master your finances!"
-                  navigateTo="/budget"
-                />
-              </div>
-            )}
+                <section 
+                  className={`${styles.flexCenter} ${styles.marginY} ${styles.padding} sm:flex-row flex-col bg-[#232323] rounded-[10px] box-shadow border-[1px] border-[#1CE8A8] shadow-inner m-[10px] p-[10px]`}
+                >
+                  <div className="flex-1 flex flex-col">
+                    <h2 className={styles.heading3}>Unlock AI-Powered Financial Planning</h2>
+                    <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
+                      You've taken the first step with your expenditure analysis. Now, elevate your financial strategy with our AI-driven custom budgeting tool. Set clear financial goals and let our advanced algorithms guide you towards achieving them. Remember, this tailored experience builds upon your analysis, ensuring precision and relevance. Don't miss out on this opportunity to master your finances!
+                    </p>
+                  </div>
+
+                  <div className={`${styles.flexCenter} sm:ml-10 ml-0 sm:mt-0 mt-10`}>
+                    <button 
+                      onClick={handleNavigation}
+                      className={`py-2 px-8 font-poppins font-medium text-[#1CE8A8] bg-black border border-[#1CE8A8] rounded-[3px] outline-none hover:bg-[#1CE8A8] hover:text-black`}
+                    >
+                      Let's Go →
+                    </button>
+                  </div>
+                </section>
+              )}
             </div>
         </div>
       </div>

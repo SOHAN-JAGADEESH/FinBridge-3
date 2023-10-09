@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Assuming you're using react-router v6
+import { Link } from 'react-router-dom'; // Assuming you're using react-router v6
 import styles from "../style";
 
 /**
@@ -13,12 +13,7 @@ import styles from "../style";
  * @param {string} navigateTo - The route to navigate to when the button is clicked.
  * @returns {JSX.Element} - A card displaying the provided information with a navigation button.
  */
-const UserJourneyCard = ({ header, paragraph, navigateTo }) => {
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate(navigateTo);
-    };
+const UserJourneyCard = ({ header, paragraph, navigateTo, data = {} }) => {
 
     return (
         <section 
@@ -32,16 +27,17 @@ const UserJourneyCard = ({ header, paragraph, navigateTo }) => {
             </div>
 
             <div className={`${styles.flexCenter} sm:ml-10 ml-0 sm:mt-0 mt-10`}>
-                <button
-                    type="button"
-                    className={`py-2 px-8 font-poppins font-medium text-[#1CE8A8] bg-black border border-[#1CE8A8] rounded-[3px] outline-none hover:bg-[#1CE8A8] hover:text-black`}
-                    onClick={handleClick}
+                <Link 
+                  to={{
+                    pathname: navigateTo,
+                    state: data
+                  }}
+                  className={`py-2 px-8 font-poppins font-medium text-[#1CE8A8] bg-black border border-[#1CE8A8] rounded-[3px] outline-none hover:bg-[#1CE8A8] hover:text-black`}
                 >
                     Let's Go →
-                </button>
+                </Link>
             </div>
         </section>
     );
 }
-
 export default UserJourneyCard;

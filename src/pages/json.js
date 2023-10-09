@@ -230,7 +230,8 @@ export const json = {
             "value": "premium",
             "text": "Luxury"
            }
-          ]
+          ],
+          "maxSelectedChoices": 1
          },
          {
           "type": "rating",
