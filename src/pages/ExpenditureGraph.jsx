@@ -16,6 +16,8 @@ const ExpenditureGraph = ({ expenditures }) => {
   const userChartRef = useRef(null); // Reference to the canvas element for user's expenditure
   const averageChartRef = useRef(null); // Reference to the canvas element for average spending
   const [overspendingCategories, setOverspendingCategories] = useState([]);
+  const userChartInstance = useRef(null); // Ref to store the chart instance for user's expenditure
+  const averageChartInstance = useRef(null); 
 
   const tips = {
     housing: [
@@ -55,10 +57,19 @@ const ExpenditureGraph = ({ expenditures }) => {
     if (userChartRef.current && averageChartRef.current) {
       const userCtx = userChartRef.current.getContext('2d');
       const averageCtx = averageChartRef.current.getContext('2d');
-
+  
+      // Destroy previous chart instances if they exist
+      if (userChartInstance.current) {
+        userChartInstance.current.destroy();
+      }
+  
+      if (averageChartInstance.current) {
+        averageChartInstance.current.destroy();
+      }
+  
       // Calculate total expenditure
       const totalExpenditure = Object.values(expenditures).reduce((acc, curr) => acc + Number(curr), 0);
-
+  
       // Determine overspending categories and set their colors
       const overspending = [];
       const colors = Object.keys(expenditures).map(category => {
@@ -69,7 +80,7 @@ const ExpenditureGraph = ({ expenditures }) => {
         return '#1CE8A8';
       });
       setOverspendingCategories(overspending);
-
+  
       // Data for user's expenditure chart
       const userChartData = {
         labels: [...Object.keys(expenditures), 'Total'],
@@ -81,7 +92,7 @@ const ExpenditureGraph = ({ expenditures }) => {
           borderWidth: 1
         }]
       };
-
+  
       // Data for average spending chart
       const averageChartData = {
         labels: Object.keys(apiResponse),
@@ -93,7 +104,7 @@ const ExpenditureGraph = ({ expenditures }) => {
           borderWidth: 1
         }]
       };
-
+  
       const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -106,21 +117,22 @@ const ExpenditureGraph = ({ expenditures }) => {
           }
         }
       };
-
-      new Chart(userCtx, {
+  
+      // Store the created chart instances
+      userChartInstance.current = new Chart(userCtx, {
         type: 'bar',
         data: userChartData,
         options: chartOptions
       });
-
-      new Chart(averageCtx, {
+  
+      averageChartInstance.current = new Chart(averageCtx, {
         type: 'bar',
         data: averageChartData,
         options: chartOptions
       });
     }
   }, [expenditures, apiResponse]);
-
+  
   return (
     <div>
       <h3 style={{ color: '#1CE8A8' }}>Expenditure Graph</h3>
