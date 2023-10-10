@@ -63,10 +63,11 @@ const handleSubmit = () => {
           <Navbar />
           <div className={`mt-8 text-center`}>
             <h2 className={styles.heading2}>
-                Let us analyze your expenditure
+                Smart Expense Analyzer
             </h2>
             <p className={`${styles.paragraph} mt-5`}>
-                Your description goes here. This is a placeholder text to show where the description will appear.
+            Dive deep into your spending habits with our Smart Expense Analyzer. By understanding where your money goes, you pave the way for informed financial decisions. 
+            This platform not only visualizes your expenditures across various categories but also provides insightful tips to optimize and better manage your finances. Whether you're looking to save for a dream vacation or simply to cut down on unnecessary spending, our analysis serves as a solid foundation. Let's embark on a journey to financial wisdom together!
             </p>
           </div>
           <br/>

@@ -35,18 +35,18 @@ const Navbar = () => {
         >
           {/* Close Icon */}
           <img
-  src={close}
-  alt="close"
-  className="w-[22px] h-[22px] object-contain cursor-pointer absolute top-4 right-4"
-  style={{ 
-    filter: isHovered 
-      ? 'invert(35%) sepia(60%) saturate(400%) hue-rotate(130deg)'  // Color for #007e57
-      : 'invert(35%) sepia(93%) saturate(743%) hue-rotate(123deg) brightness(92%) contrast(89%)'  // Color for #1CE8A8
-  }}
-  onClick={() => setToggle(false)}
-  onMouseEnter={() => setIsHovered(true)}
-  onMouseLeave={() => setIsHovered(false)}
-/>
+              src={close}
+              alt="close"
+              className="w-[22px] h-[22px] object-contain cursor-pointer absolute top-4 right-4"
+              style={{ 
+                filter: isHovered 
+                  ? 'invert(35%) sepia(60%) saturate(400%) hue-rotate(130deg)'  // Color for #007e57
+                  : 'invert(35%) sepia(93%) saturate(743%) hue-rotate(123deg) brightness(92%) contrast(89%)'  // Color for #1CE8A8
+              }}
+              onClick={() => setToggle(false)}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            />
 
             <ul className="list-none flex flex-col justify-start items-start h-full">
               {navLinks.map((nav, index) => (
@@ -57,7 +57,7 @@ const Navbar = () => {
                   } `}
                 >
                 <NavLink
-                  to={index === 0 ? "/" : index === 1 ? "/dollar" : index === 2 ? "/compare" : index === 3 ? "/information" : index === 4 ? "/survey" : index === 5 ? "/analyze" : index === navLinks.length - 1 ? "/budget" : `#${nav.id}`}
+                  to={index === 0 ? "/" : index === 1 ? "/dollar" : index === 2 ? "/compare" : index === 3 ? "/information" : index === 4 ? "/survey" : index === 5 ? "/analyze"  : `#${nav.id}`}
                   activeClassName="text-[#1CE8A8]"
                   className="text-[#1CE8A8] hover:text-[#007e57]"
                 >

@@ -26,10 +26,7 @@ export const navLinks = [
     id: "Analyze",
     title: "Expenditure Analyzer",
   },
-  {
-    id: "AI",
-    title: "AI Budget Assistant",
-  },
+  
 ];
 
 export const features = [

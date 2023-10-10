@@ -170,8 +170,14 @@ export const json = {
           "isRequired": true,
           "choices": [
            "Budget",
-           "Moderate",
-           "Expensive"
+           {
+            "value": "average",
+            "text": "Moderate"
+           },
+           {
+            "value": "premium",
+            "text": "Expensive"
+           }
           ],
           "maxSelectedChoices": 1
          }

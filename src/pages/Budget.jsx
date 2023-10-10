@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Navbar, Footer} from "../components";
 import styles from "../style";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link} from 'react-router-dom';
 import "../index.css";
 
 const Budget = () => {
@@ -13,6 +13,8 @@ const Budget = () => {
   const [savings2, setSavings2] = useState(null);
 
   const [errors, setErrors] = useState({ income: false, savings: false, months: false });
+  
+  
 
   const validateInput = (value, type) => {
     switch(type) {
@@ -138,10 +140,9 @@ const sendDataToAPI = async () => {
               Use AI To Supercharge Your Budgeting
             </h2>
             <p className={`${styles.paragraph} mt-5 text-center`}>
-              It could be challenging to evaluate the purchasing power of your money in a foreign country.
-              We are here to help,
-              Enter any amount of Australian Dollar here and see what it can get you.
-              Every dollar spent is a reminder of the sacrifices made by your family miles away, spend it wisely!
+            Welcome to the Custom Budget Assistant page, a modern solution to financial planning.
+            Leveraging the power of artificial intelligence, this tool is designed to provide users with personalized
+             budget recommendations tailored to their specific needs and goals.
             </p>
           <div className={`mt-8 text-center border-2 border-[#1CE8A8] p-5 rounded`}>
             <h2 className={styles.heading2}>
@@ -150,7 +151,7 @@ const sendDataToAPI = async () => {
             <p className={`${styles.paragraph} mt-5`}>
                 Choose your budgeting goal:
             </p>
-          
+            <br/>
             <button onClick={() => setChoice('saveMoney')} className={`p-3 m-2 rounded ${choice === 'saveMoney' ? 'bg-[#1CE8A8] text-gray-500' : 'bg-gray-500 text-[#1CE8A8]'}`}>Save Money</button>
             <button onClick={() => setChoice('saveGoal')}className={`p-3 m-2 rounded ${choice === 'saveGoal' ? 'bg-[#1CE8A8] text-gray-500' : 'bg-gray-500 text-[#1CE8A8]'}`}>Save Towards a Goal</button>
             <button onClick={() => setChoice('reduceExpenditure')} className={`p-3 m-2 rounded ${choice === 'reduceExpenditure' ? 'bg-[#1CE8A8] text-gray-500' : 'bg-gray-500 text-[#1CE8A8]'}`}>Reduce Expenditure</button>
@@ -248,19 +249,27 @@ const sendDataToAPI = async () => {
               </div>
             )}
           
-
+            <br/>
+            <br/>
             <button onClick={sendDataToAPI} className="bg-[#1CE8A8] p-3 m-2 rounded">
                 Get Custom Budget
             </button>
           </div>
-            <div className="mt-8 ">
-                <h2 className={styles.heading2}>
-                    Your Custom Budget Recommendation
-                </h2>
-                <div className={`${styles.paragraph} mt-5 text-white wordWrap`} style={{ maxWidth: '100%', overflow: 'hidden' }}>
-                    <pre className="preWrap">{budgetRecommendation}</pre>
-                </div>
-            </div>
+          <div className="mt-8 ">
+              <h2 className={`${styles.heading2} text-center`}>
+                  Your Custom Budget Recommendation :
+              </h2>
+              <div className={`${styles.paragraph} mt-5 text-white wordWrap`} style={{ maxWidth: '100%', overflow: 'hidden', backgroundColor: '#181818', borderRadius: '10px', padding: '20px', fontFamily: 'Poppins, sans-serif' }}>
+                  <pre className="preWrap">{budgetRecommendation}</pre>
+              </div>
+          </div>
+          {budgetRecommendation && 
+              <div className="text-center mt-5">
+                  <Link to="/analyze" className="bg-[#1CE8A8] p-3 m-2 rounded inline-block">
+                      Re-enter Expenditure Values
+                  </Link>
+              </div>
+          }
        
       </div>
     </div>
