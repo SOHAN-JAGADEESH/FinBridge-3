@@ -5,13 +5,13 @@ import styles from "../style";
 
 const ExpenditureGraph = ({ expenditures }) => {
   const [apiResponse, setApiResponse] = useState({
-    housing: 500,
-    food: 300,
-    transportation: 400,
-    utilities: 200,
-    leisure: 150,
-    miscellaneous: 100,
-    total: 1650
+    housing: 1423,
+    food: 880,
+    transportation: 200,
+    utilities: 212,
+    leisure: 347,
+    miscellaneous: 200,
+    total: 3262
   }); // Dummy data for API response
   const userChartRef = useRef(null); // Reference to the canvas element for user's expenditure
   const averageChartRef = useRef(null); // Reference to the canvas element for average spending
