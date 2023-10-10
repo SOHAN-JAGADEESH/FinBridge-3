@@ -1,31 +1,5 @@
-# netlify.toml
-
-[[redirects]]
-  from = "/analyze"
-  to = "/analyze"
-  status = 200
-
-[[redirects]]
-  from = "/dollar"
-  to = "/dollar"
-  status = 200
-
-[[redirects]]
-  from = "/compare"
-  to = "/compare"
-  status = 200
-
-[[redirects]]
-  from = "/information"
-  to = "/information"
-  status = 200
-
-[[redirects]]
-  from = "/survey"
-  to = "/survey"
-  status = 200
-
 [[redirects]]
   from = "/*"
-  to = "/"
+  to = "/index.html"
   status = 200
+  force = true
