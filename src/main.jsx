@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Dollar from './pages/Dollar';
 import Compare from './pages/Compare';
 import Survey from './pages/Survey';
@@ -12,37 +12,47 @@ import {
   createBrowserRouter,
   RouterProvider,
   useNavigate,
-   // Import the useNavigate hook
+  useLocation // Import the useNavigate hook
 } from 'react-router-dom';
+
+function ScrollToTop({ children }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return children;
+}
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <ScrollToTop><App /></ScrollToTop>,
   },
   {
     path: '/dollar',
-    element: <Dollar />,
+    element:<ScrollToTop><Dollar /></ScrollToTop> ,
   },
   {
     path: '/compare',
-    element: <Compare />,
+    element: <ScrollToTop><Compare /></ScrollToTop>,
   },
   {
     path: '/information',
-    element: <Information />,
+    element: <ScrollToTop><Information /></ScrollToTop>,
   },
   {
     path: '/survey',
-    element: <Survey />,
+    element: <ScrollToTop><Survey /></ScrollToTop>,
   },
   {
     path: '/analyze',
-    element: <Analyze />,
+    element: <ScrollToTop><Analyze /></ScrollToTop>,
   },
   {
     path: '/budget',
-    element: <Budget />,
+    element: <ScrollToTop><Budget /></ScrollToTop>,
   },
 ]);
 
