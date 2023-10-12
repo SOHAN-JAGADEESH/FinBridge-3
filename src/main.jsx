@@ -11,7 +11,8 @@ import './index.css';
 import {
   createBrowserRouter,
   RouterProvider,
-  useNavigate, // Import the useNavigate hook
+  useNavigate,
+   // Import the useNavigate hook
 } from 'react-router-dom';
 
 const router = createBrowserRouter([

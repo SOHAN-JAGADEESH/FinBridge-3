@@ -41,7 +41,14 @@ const Analyze = () => {
     }));
 }
 
-  
+const placeholders = {
+  housing: 'Housing Expenses',
+  food: 'Food Expenses',
+  transportation: 'Transportation Expenses',
+  utilities: 'Utilities',
+  leisure: 'Leisure & Entertainment',
+  miscellaneous: 'Miscellaneous Expenses'
+}; 
   
 
 const handleSubmit = () => {
@@ -87,6 +94,7 @@ const handleSubmit = () => {
                       value={expenditures[category]} 
                       onChange={handleInputChange} 
                       className="border p-2 bg-gray-200"
+                      placeholder={placeholders[category]}
                     />
                     {errors[category] && <p className="text-red-500">{errors[category]}</p>}
                   </div>
@@ -103,6 +111,7 @@ const handleSubmit = () => {
                       value={expenditures[category]} 
                       onChange={handleInputChange} 
                       className="border p-2 bg-gray-200"
+                      placeholder={placeholders[category]}
                     />
                     {errors[category] && <p className="text-red-500">{ errors[ category]}</p>}
                   </div>
@@ -110,11 +119,17 @@ const handleSubmit = () => {
                 ))}
               </div>
             </div>
-            <div className="mt-8 text-center">
-              <button onClick={handleSubmit} className={`mt-2  py-2 px-6 font-poppins font-medium text-[#1CE8A8] bg-black border border-[#1CE8A8] rounded-[3px] outline-none hover:bg-[#1CE8A8] hover:text-black `}>
-                Calculate
-              </button>
-            </div>
+            {!showGraph ? (
+                <div className="mt-8 text-center">
+                    <button onClick={handleSubmit} className={`mt-2  py-2 px-6 font-poppins font-medium text-[#1CE8A8] bg-black border border-[#1CE8A8] rounded-[3px] outline-none hover:bg-[#1CE8A8] hover:text-black `}>
+                        Calculate
+                    </button>
+                </div>
+            ) : (
+                <div className="mt-5 text-white text-center">
+                    Note: You can adjust the values above and see the graph change dynamically.
+                </div>
+            )}
             <br/>
             {showGraph && <ExpenditureGraph expenditures={expenditures} />}  {/* Conditionally render the graph */}
             
