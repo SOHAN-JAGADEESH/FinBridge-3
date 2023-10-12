@@ -16,13 +16,15 @@ import UserJourneyCard from "./UserJourneyCard";
 const Dollar = () => {
   // State to store the user input amount
   const [amount, setAmount] = useState(null);
-
+  // State to store the to display the loading icon or not
+  
   // State to store the response from the API
   const [response, setResponse] = useState(null);
 
   // Effect hook to fetch data when the amount changes
   useEffect(() => {
     if (amount !== null) {
+       
       const integerAmount = parseInt(amount, 10);
 
       // Ensure the amount does not exceed the maximum limit of 100,000
@@ -52,7 +54,11 @@ const Dollar = () => {
               console.error('Unexpected data format received:', data);
           }
       })
-      .catch(error => console.error('There was an error!', error));
+      .catch(error => {
+         // Stop the loading indicator in case of an error
+        console.error('There was an error!', error);
+      });
+      
     }
   }, [amount]);
 

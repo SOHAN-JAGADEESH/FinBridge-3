@@ -189,7 +189,7 @@ const sendDataToAPI = async () => {
                   placeholder="Income in $" 
                   value={income} 
                   onChange={e => handleInputChange(e, 'income')} 
-                  className={`border p-2 bg-gray-200 m-2 ${errors.income ? 'border-red-500' : ''}`}
+                  className={`border rounded p-2 bg-gray-200 m-2 ${errors.income ? 'border-red-500' : ''}`}
                 />
                 {errors.income && <p className="text-red-500">Income should be between 0 and 200,000</p>}
                 <div>
@@ -212,7 +212,7 @@ const sendDataToAPI = async () => {
                   placeholder="Income in $" 
                   value={income} 
                   onChange={e => handleInputChange(e, 'income')} 
-                  className={`border p-2 bg-gray-200 m-2 ${errors.income ? 'border-red-500' : ''}`}
+                  className={`border  rounded p-2 bg-gray-200 m-2 ${errors.income ? 'border-red-500' : ''}`}
                 />
                 {errors.income && <p className="text-red-500">Income should be between $0 and $200,000</p>}
                 
@@ -222,7 +222,7 @@ const sendDataToAPI = async () => {
                   placeholder="Savings in $" 
                   value={savings} 
                   onChange={e => handleInputChange(e, 'savings')} 
-                  className={`border p-2 bg-gray-200 m-2 ${errors.savings ? 'border-red-500' : ''}`}
+                  className={`border p-2 rounded bg-gray-200 m-2 ${errors.savings ? 'border-red-500' : ''}`}
                 />
                 {errors.savings && <p className="text-red-500">Savings goal should be between $0 and $200,000</p>}
                 
@@ -233,7 +233,7 @@ const sendDataToAPI = async () => {
                   value={months} 
                   onChange={e => handleInputChange(e, 'months')} 
                   onKeyPress={e => (e.key === '.' && e.preventDefault())}
-                  className={`border p-2 bg-gray-200 m-2 ${errors.months ? 'border-red-500' : ''}`}
+                  className={`border p-2 rounded bg-gray-200 m-2 ${errors.months ? 'border-red-500' : ''}`}
                 />
                 {errors.months && <p className="text-red-500">Months should be between 1 and 47 and be a whole number</p>}
               </div>

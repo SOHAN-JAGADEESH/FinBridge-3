@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {Navbar, Footer} from "../components";
 import styles from "../style";
 import ExpenditureGraph from './ExpenditureGraph';
-import UserJourneyCard from './UserJourneyCard';
 import { useNavigate } from 'react-router-dom';
 
 const Analyze = () => {
@@ -42,12 +41,12 @@ const Analyze = () => {
 }
 
 const placeholders = {
-  housing: 'Housing Expenses',
-  food: 'Food Expenses',
-  transportation: 'Transportation Expenses',
-  utilities: 'Utilities',
-  leisure: 'Leisure & Entertainment',
-  miscellaneous: 'Miscellaneous Expenses'
+  housing: 'Enter Expenses in AUD',
+  food: 'Enter Expenses in AUD',
+  transportation: 'Enter Expenses in AUD',
+  utilities: 'Enter Expenses in AUD',
+  leisure: 'Enter Expenses in AUD',
+  miscellaneous: 'Enter Expenses in AUD'
 }; 
   
 
@@ -64,10 +63,11 @@ const handleSubmit = () => {
 }
 
   return (
-    <div className="bg-primary w-full overflow-hidden min-h-screen relative ">
-      <div className={`${styles.paddingX} ${styles.flexCenter} main-section `}>
+    <div className="bg-primary w-full overflow-hidden min-h-screen relative">
+      <div className={`${styles.paddingX} ${styles.flexCenter} main-section`}>
         <div className={`${styles.boxWidth}`}>
           <Navbar />
+          
           <div className={`mt-8 text-center`}>
             <h2 className={styles.heading2}>
                 Smart Expense Analyzer
@@ -93,7 +93,7 @@ const handleSubmit = () => {
                       name={category} 
                       value={expenditures[category]} 
                       onChange={handleInputChange} 
-                      className="border p-2 bg-gray-200"
+                      className="border p-2 bg-gray-200 rounded"
                       placeholder={placeholders[category]}
                     />
                     {errors[category] && <p className="text-red-500">{errors[category]}</p>}
@@ -110,7 +110,7 @@ const handleSubmit = () => {
                       name={category} 
                       value={expenditures[category]} 
                       onChange={handleInputChange} 
-                      className="border p-2 bg-gray-200"
+                      className="border p-2 bg-gray-200 rounded"
                       placeholder={placeholders[category]}
                     />
                     {errors[category] && <p className="text-red-500">{ errors[ category]}</p>}
