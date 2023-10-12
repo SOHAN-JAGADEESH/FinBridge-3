@@ -80,7 +80,7 @@ const handleSubmit = () => {
           <br/>
           <div className="border-2 border-[#1CE8A8] p-8">
           <h2 className={`${styles.heading4} text-center`}>
-                Please enter your expenditure for these categories in AUD
+                Please enter your Monthly Expenditure for these categories in AUD
             </h2>
             <div className="input-section mt-8 flex justify-center">
               <div className="flex flex-col mr-4">

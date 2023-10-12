@@ -17,13 +17,16 @@ const Budget = () => {
   const [isLoading, setIsLoading] = useState(false); // New state for loading indicator
 
   const validateInput = (value, type) => {
+    // If the value is an empty string, consider it as valid for now
+    if (value === "") return true;
+  
     switch(type) {
       case 'income':
         return value >= 0 && value <= 200000;
       case 'savings':
         return value > 0 && value <= 200000;
       case 'months':
-        return value > 0 && value < 48 ;
+        return value > 0 && value < 48;
       default:
         return false;
     }
@@ -183,7 +186,7 @@ const sendDataToAPI = async () => {
 
             {choice === 'saveMoney' && (
               <div className="mt-5">
-                <label className={`${styles.paragraph} block mb-2`}>Enter your Income:</label>
+                <label className={`${styles.paragraph} block mb-2`}>Enter your Monthly Income:</label>
                 <input 
                   type="number" 
                   placeholder="Income in $" 
@@ -206,7 +209,7 @@ const sendDataToAPI = async () => {
 
             {choice === 'saveGoal' && (
               <div className="mt-5">
-                <label className={`${styles.paragraph} block mb-2`}>Enter your Income:</label>
+                <label className={`${styles.paragraph} block mb-2`}>Enter your Monthly Income:</label>
                 <input 
                   type="number" 
                   placeholder="Income in $" 
