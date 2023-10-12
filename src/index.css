@@ -286,3 +286,18 @@ canvas {
   margin-bottom: 20px;
   font-size: 16px;
 }
+
+/* these are for loading animation in budget section */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  border: 5px solid rgba(255, 255, 255, 0.3); /* Light white */
+  border-radius: 50%;
+  border-top: 5px solid #1CE8A8; /* Green color to match the rest of your site */
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}

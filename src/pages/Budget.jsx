@@ -14,7 +14,7 @@ const Budget = () => {
 
   const [errors, setErrors] = useState({ income: false, savings: false, months: false });
   
-  
+  const [isLoading, setIsLoading] = useState(false); // New state for loading indicator
 
   const validateInput = (value, type) => {
     switch(type) {
@@ -53,6 +53,7 @@ const Budget = () => {
 
 
 const sendDataToAPI = async () => {
+  setIsLoading(true);
   let promptText = `Given the user's expenditures of:
     Housing: ${receivedExpenditures.housing || 0},
     Food: ${receivedExpenditures.food || 0},
@@ -124,6 +125,7 @@ const sendDataToAPI = async () => {
     } catch (error) {
       console.error('Error sending data to OpenAI:', error);
     }
+    setIsLoading(false);
   };
 
   
@@ -144,6 +146,27 @@ const sendDataToAPI = async () => {
             Leveraging the power of artificial intelligence, this tool is designed to provide users with personalized
              budget recommendations tailored to their specific needs and goals.
             </p>
+            <div className="mt-8 text-center bg-gray-500 p-5 rounded">
+            <h2 className={styles.heading2}>
+                Your Expenditures
+            </h2>
+            {receivedExpenditures && (
+              <div className={`${styles.paragraph} mt-5`}>
+                  Housing: ${receivedExpenditures.housing || 0}<br/>
+                  Food: ${receivedExpenditures.food || 0}<br/>
+                  Transportation: ${receivedExpenditures.transportation || 0}<br/>
+                  Utilities: ${receivedExpenditures.utilities || 0}<br/>
+                  Leisure: ${receivedExpenditures.leisure || 0}<br/>
+                  Miscellaneous: ${receivedExpenditures.miscellaneous || 0}
+              </div>
+            )}
+            <div className="text-center mt-5">
+                  <Link to="/analyze" className="bg-[#1CE8A8] p-3 m-2 rounded inline-block">
+                      Re-enter Expenditure Values
+                  </Link>
+            </div>
+          </div>
+
           <div className={`mt-8 text-center border-2 border-[#1CE8A8] p-5 rounded`}>
             <h2 className={styles.heading2}>
                 Budgeting Options
@@ -259,17 +282,16 @@ const sendDataToAPI = async () => {
               <h2 className={`${styles.heading2} text-center`}>
                   Your Custom Budget Recommendation :
               </h2>
+              {isLoading && (
+                <div className="mt-5 text-center">
+                  <div className="spinner"></div>
+                </div>
+              )}
               <div className={`${styles.paragraph} mt-5 text-white wordWrap`} style={{ maxWidth: '100%', overflow: 'hidden', backgroundColor: '#181818', borderRadius: '10px', padding: '20px', fontFamily: 'Poppins, sans-serif' }}>
                   <pre className="preWrap">{budgetRecommendation}</pre>
               </div>
           </div>
-          {budgetRecommendation && 
-              <div className="text-center mt-5">
-                  <Link to="/analyze" className="bg-[#1CE8A8] p-3 m-2 rounded inline-block">
-                      Re-enter Expenditure Values
-                  </Link>
-              </div>
-          }
+          
        
       </div>
     </div>
