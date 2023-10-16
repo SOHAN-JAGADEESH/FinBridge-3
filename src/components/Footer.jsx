@@ -1,47 +1,64 @@
-import styles from "../style";
+import React from "react";
 import { logo } from "../assets";
 import { NavLink, Link } from "react-router-dom";
 import { navLinks } from "../constants";
-import { footerLinks, socialMedia } from "../constants";
 
+/**
+ * Footer Component
+ * 
+ * This component displays a footer with the FinBridge logo, navigation links, and copyright information.
+ * 
+ * @returns {React.Element} A rendered Footer component.
+ */
 const Footer = () => {
   return (
     <footer className="bg-darkGray py-10 px-4 md:px-0">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+      <div className="container mx-auto flex flex-col justify-center items-center text-center">
         
-        <div className="mb-6 md:mb-0 pl-4 md:pl-0">
-        <Link to="/">
-            <img src={logo} alt="FinBridge logo" className="w-[124px] h-[32px]" />
-        </Link>
+        {/* Logo Section */}
+        <div className="mb-4">
+          {/* Link wrapping the logo, redirects to the homepage when clicked */}
+          <Link to="/">
+            {/* Logo Image */}
+            <img src={logo} alt="FinBridge logo" className="w-[224px] h-[52px]" />
+          </Link>
         </div>
 
-        <div className="mt-6 md:mt-0 text-white text-sm">
-           2023 Finbridge. All rights reserved.
-        </div>
-
-        <div className="flex flex-col space-y-4 pr-4 md:pr-0">
+        {/* Navigation Links Section */}
+        <div className="flex flex-wrap justify-center mb-4 space-x-4">
+          {/* Loop through the navLinks array and generate navigation links */}
           {navLinks.map((nav, index) => (
-            <NavLink
-              key={nav.id}
-              to={
-                index === 0
-                  ? "/"
-                  : index === 1
-                  ? "/dollar"
-                  : index === 3
-                  ? "/information"
-                  : index === navLinks.length - 1
-                  ? "/survey"
-                  : index === 2
-                  ? "/compare"
-                  : `#${nav.id}`
-              }
-              activeClassName="text-emerald"
-              className="text-white text-sm hover:text-emerald"
-            >
-              {nav.title}
-            </NavLink>
+            <React.Fragment key={nav.id}>
+              <NavLink
+                to={
+                  index === 0
+                    ? "/"
+                    : index === 1
+                    ? "/dollar"
+                    : index === 4
+                    ? "/survey"
+                    : index === 3
+                    ? "/information"
+                    : index === navLinks.length - 1
+                    ? "/analyze"
+                    : index === 2
+                    ? "/compare"
+                    : `#${nav.id}`
+                }
+                activeClassName="text-emerald" // Apply styles when the link is active
+                className="text-white text-sm hover:text-emerald" // Default styles for the link
+              >
+                {nav.title} {/* Display the title of the navigation link */}
+              </NavLink>
+              {/* Add a separator '|' between links, except after the last link */}
+              {index !== navLinks.length - 1 && <span className="text-white mx-2">|</span>}
+            </React.Fragment>
           ))}
+        </div>
+
+        {/* Copyright Information Section */}
+        <div className="text-white text-sm">
+           © 2023 Finbridge. All rights reserved.
         </div>
         
       </div>

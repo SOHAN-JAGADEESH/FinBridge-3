@@ -303,3 +303,39 @@ canvas {
   height: 50px;
   animation: spin 1s linear infinite;
 }
+
+/* these are for user journey mapping section */
+.journeyMapContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px; /* Adjust as needed */
+}
+
+.iconContainer {
+  width: 40px; /* Adjust the size */
+  height: 40px;
+  border-radius: 50%;
+  background-color: #1CE8A8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connectingLine {
+  flex-grow: 1;
+  height: 2px;
+  background-color: #1CE8A8;
+  margin: 0 10px; /* Space between the line and the icons */
+}
+
+.journeyIcon {
+  width: 20px; /* Adjust the size */
+  height: 20px;
+  filter: grayscale(100%); /* Make it grayscale if not visited */
+}
+
+.journeyIcon.visited {
+  filter: none; /* Bring back the color when visited */
+}

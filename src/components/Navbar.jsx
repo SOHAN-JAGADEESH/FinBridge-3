@@ -1,17 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { close, logo, menu, navbg } from "../assets";
+
 import { navLinks } from "../constants";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  const location = useLocation();
+  const [visitedPages, setVisitedPages] = useState([]);
+
+  useEffect(() => {
+    if (location.pathname && !visitedPages.includes(location.pathname)) {
+      setVisitedPages((prevPages) => [...prevPages, location.pathname]);
+    }
+  }, [location.pathname]);
+
   return (
     <nav className="w-full flex py-4 justify-between items-center navbar">
       <Link to="/">
-        <img src={logo} alt="FinBridge logo" className="w-[124px] h-[32px]" />
+        <img src={logo} alt="FinBridge logo" className="w-[154px] h-[32px]" />
       </Link>
+
        
       <div className="flex flex-1 justify-end items-center">
         <img
