@@ -68,7 +68,7 @@ const Compare = () => {
                   <Navbar />
                   <div className="mt-8 text-center">
                       <h2 className={`${styles.heading2}`}>Cost Comparison for Students in Melbourne</h2>
-                      <div className= {`${styles.paragraph} mt-4 text-justify`}>
+                      <div className= {`${styles.paragraph} mt-4  text-center`}>
                         <p className="customIndent">
                             <strong>Understanding Relative Prices:</strong> Learn how your hourly wage equates to everyday expenses in Melbourne, bringing clarity to your financial planning.
                         </p>
